@@ -1,0 +1,89 @@
+accessibility: Private
+↓Init [steps.SimpleStep-1653902583084]: 
+  expression: |
+    'include("js/common.js");
+    
+    var rows = [];
+    var lastRow = 0;
+    repository.listFiles().forEach(repo => {
+    	let meta = getMeta(repo);
+    	if (meta == null) {
+    		return;
+    	}
+    	if (lastRow >= skip && rows.length < limit) {
+    		meta.now = new Date();
+    		meta.date = new Date(meta.expire);
+    		rows.push(meta);
+    	}
+    	lastRow++;
+    });'
+↓lastRow [steps.JsonFieldStep-1653902571815]: 
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: lastRow
+  type: number
+  value: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: JS
+        - →→: lastRow
+↓ColDef [steps.JsonArrayStep-1653902837062]: 
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: ColDef
+  ↓id [steps.JsonObjectStep-1653902863090]: 
+    ↓field [steps.JsonFieldStep-1653902889299]: 
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: id
+  ↓name [steps.JsonObjectStep-1653902913516]: 
+    ↓field [steps.JsonFieldStep-1653902913519]: 
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: name
+  ↓size [steps.JsonObjectStep-1653902928914]: 
+    ↓field [steps.JsonFieldStep-1653902928917]: 
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: size
+  ↓expire [steps.JsonObjectStep-1653916967935]: 
+    ↓field [steps.JsonFieldStep-1653916967938]: 
+      value: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: expire
+↓RowData [steps.JsonToXmlStep-1653902571821]: 
+  jsonObject: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: JS
+        - →→: rows
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: RowData
+↓limit [variables.RequestableVariable-1653902540489]: 
+  value: 100
+↓skip [variables.RequestableVariable-1653902540492]: 
+  value: 0

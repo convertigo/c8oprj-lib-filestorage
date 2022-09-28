@@ -1,0 +1,125 @@
+accessibility: Private
+↓IfFileExistsThenElse [steps.IfFileExistThenElseStep-1653900401756]: 
+  condition: file
+  ↓jThen [steps.ThenStep-1653900403395]: 
+    ↓Init [steps.SimpleStep-1653900575872]: 
+      expression: |
+        'if (id == "") {
+        	id = Math.floor(Math.random() * 10e11 + 10e10).toString(36);
+        }
+        file = new java.io.File(file);
+        
+        lifetime *= 1;
+        var expire = lifetime > -1 ? new Date().getTime() + lifetime * 60000 : Number.MAX_VALUE;'
+    ↓IfFileExists [steps.IfFileExistStep-1653903198572]: 
+      condition: '"./lib_FileStorage/" + id + "/"'
+      ↓Delete_file [steps.DeleteStep-1653902366985]: 
+        sourcePath: '"./lib_FileStorage/" + id + "/"'
+    ↓Create_directory [steps.CreateDirectoryStep-1653901979352]: 
+      destinationPath: '"./lib_FileStorage/" + id'
+    ↓meta [steps.JsonObjectStep-1653914117064]: 
+      key: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: meta
+      ↓id [steps.JsonFieldStep-1653914449867]: 
+        key: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: PLAIN
+              - →→: id
+        value: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: JS
+              - →→: id
+      ↓name [steps.JsonFieldStep-1653914129538]: 
+        key: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: PLAIN
+              - →→: name
+        value: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: JS
+              - →→: file.getName()
+      ↓length [steps.JsonFieldStep-1653914525135]: 
+        key: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: PLAIN
+              - →→: size
+        type: number
+        value: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: JS
+              - →→: file.length()
+      ↓expire [steps.JsonFieldStep-1653914631408]: 
+        key: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: PLAIN
+              - →→: expire
+        type: number
+        value: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: JS
+              - →→: expire
+    ↓Move_file [steps.MoveStep-1653900495794]: 
+      destinationPath: '"./lib_FileStorage/" + id + "/"'
+      overwrite: true
+      sourcePath: file
+    ↓WriteMeta [steps.WriteJSONStep-1653914172627]: 
+      dataFile: '"./lib_FileStorage/" + id + "/_meta.json"'
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1653914117064
+            - java.lang.String: 
+              - ↑value: .
+  ↓jElse [steps.ElseStep-1653900403397]: 
+    ↓Error_structure [steps.XMLErrorStep-1653900423289]: 
+      code: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: '-1'
+      details: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: '"''" + file + "'' not found"'
+      message: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: PLAIN
+            - →→: no file provided or doesn't exists
+↓file [variables.RequestableVariable-1653900002170]: 
+  comment: file to store
+  description: file to store
+  isFileUpload: true
+↓lifetime [variables.RequestableVariable-1653900039748]: 
+  comment: (optional) file lifetime in minutes, -1 for never expire
+  description: (optional) file lifetime in minutes, -1 for never expire
+  value: '-1'
+↓id [variables.RequestableVariable-1653900132434]: 
+  comment: (optional) id to store file, override if exists, generated if empty
+  value: 

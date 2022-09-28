@@ -1,0 +1,7 @@
+accessibility: Private
+autoStart: true
+↓Init [steps.SimpleStep-1653917168173]: 
+  expression: |
+    include("js/common.js");
+    
+    initApi();

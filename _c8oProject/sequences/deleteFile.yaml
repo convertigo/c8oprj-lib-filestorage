@@ -1,0 +1,9 @@
+accessibility: Private
+↓Init [steps.SimpleStep-1653918714619]: 
+  expression: |
+    include("js/common.js");
+    
+    getApi().autoclose(id);
+↓Delete_file [steps.DeleteStep-1653902305656]: 
+  sourcePath: '"./lib_FileStorage/" + id + "/"'
+↓id [variables.RequestableVariable-1653902287380]: 

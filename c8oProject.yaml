@@ -1,0 +1,10 @@
+↑convertigo: 8.0.0.m006
+↓lib_FileStorage [core.Project]: 
+  comment: Core library to store, list, delete files in the server workspace
+  version: 8.1.0
+  ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  ↓addFile [sequences.GenericSequence]: 🗏 sequences/addFile.yaml
+  ↓deleteFile [sequences.GenericSequence]: 🗏 sequences/deleteFile.yaml
+  ↓init [sequences.GenericSequence]: 🗏 sequences/init.yaml
+  ↓initForSession [sequences.GenericSequence]: 🗏 sequences/initForSession.yaml
+  ↓listFiles [sequences.GenericSequence]: 🗏 sequences/listFiles.yaml

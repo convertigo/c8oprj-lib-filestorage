@@ -1,0 +1,8 @@
+↓Init [steps.SimpleStep-1653990117132]: 
+  expression: |
+    'if (context.httpSession.getAttribute("lib_FileStorage::api") == null) {
+    	include("js/common.js");
+    	initApi();
+    	context.httpSession.setAttribute("lib_FileStorage::api", getApi());
+    }
+    '
